@@ -57,7 +57,12 @@ public class App {
 
     post("/chilis/:chili_id/bean", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      Chili newChili = Chili.find(Integer.parseInt(request.params(":chili_id")));
+      model.put("chili", newChili);
       model.put("template", "templates/new-bean.vtl");
+      String bean = request.queryParams("bean");
+      Bean newBean = new Bean(bean);
+      model.put("bean", newBean);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
