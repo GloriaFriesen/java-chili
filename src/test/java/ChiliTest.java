@@ -28,4 +28,19 @@ public class ChiliTest {
     assertEquals(Chili.all().size(), 0);
   }
 
+  @Test
+  public void getId_chiliInstantiatesWithAnId_1() {
+    Chili.clear();
+    Chili myChili = new Chili("3 bean");
+    assertEquals(1, myChili.getId());
+  }
+
+  @Test
+  public void find_returnsChiliWithSameId_secondChili() {
+    Chili.clear();
+    Chili firstChili = new Chili("3 bean");
+    Chili secondChili = new Chili("con carne");
+    assertEquals(secondChili, Chili.find(secondChili.getId()));
+  }
+
 }
