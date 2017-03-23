@@ -38,12 +38,28 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/chilis/:id", (request, response) -> {
+    get("/chilis/:chili_id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Chili newChili = Chili.find(Integer.parseInt(request.params(":id")));
+      Chili newChili = Chili.find(Integer.parseInt(request.params(":chili_id")));
       model.put("chili", newChili);
       model.put("template", "templates/chili.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
+    get("/chilis/:chili_id/bean/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Chili newChili = Chili.find(Integer.parseInt(request.params(":chili_id")));
+      model.put("chili", newChili);
+      model.put("template", "templates/bean-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/chilis/:chili_id/bean", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-bean.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }
