@@ -1,17 +1,7 @@
 <!--index.vtl-->
 <!--Mr Bean here-->
-<h4>Lets make a chili</h4>
+<h4><a href="/chili/new">Add a chili</a></h4>
+<h4><a href="/chilis">View Chilis</a></h4>
 
-<form action="/chili" method="post">
-  <label for="chili">What kind of chili are we making?</label>
-  <input type="text" name="chili" id="chili">
-  <button type="submit" class="btn btn-sucess">Add Chili</button>
-</form>
-<p>Beans<p>
-
-#if($chiliObject)
-  #foreach($chili in $chilisArray)
-    <p>$chili.getType() exists</p>
-  #end
-#end
+<p>Mr Bean</p>
 <!--index.vtl-->

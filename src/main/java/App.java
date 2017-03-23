@@ -19,15 +19,31 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       String chiliName = request.queryParams("chili");
       Chili newChili = new Chili(chiliName);
-      model.put("chiliObject", newChili);
-      model.put("chilisArray", newChili.all());
+      request.session().attribute("chiliPrime", newChili.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/chili", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/chilis.vtl");
-    // })
+    get("/chili/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/chili-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/chilis", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("chiliKey", request.session().attribute("chiliPrime"));
+
+      model.put("template", "templates/chilis.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/chilis/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Chili newChili = Chili.find(Integer.parseInt(request.params(":id")));
+      model.put("chili", newChili);
+      model.put("template", "templates/chili.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
