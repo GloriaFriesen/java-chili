@@ -1,5 +1,6 @@
-$bean.getType()
-
+#foreach($eachbean in $beanKey)
+  <p><a href="/chilis/$chili.getId()/bean/$bean.getId()">$eachbean.getType() exists</a></p>
+#end
 
 <a href="/chilis/$chili.getId()">Back to your chili</a>
 
