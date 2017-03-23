@@ -13,5 +13,19 @@ public class ChiliTest {
     assertEquals("3 bean", myChili.getType());
   }
 
+  @Test
+  public void all_returnsAllInstancesOfChili_true() {
+    Chili firstChili = new Chili("3 bean");
+    Chili secondChili = new Chili("con carne");
+    assertEquals(true, Chili.all().contains(firstChili));
+    assertEquals(true, Chili.all().contains(secondChili));
+  }
+
+  @Test
+  public void clear_emptiesAllChiliFromList_0() {
+    Chili testChili = new Chili("3 bean");
+    Chili.clear();
+    assertEquals(Chili.all().size(), 0);
+  }
 
 }

@@ -37,4 +37,19 @@ public class BeanTest {
     Bean.clear();
     assertEquals(Bean.all().size(), 0);
   }
+
+  @Test
+  public void getId_beanInstantiatesWithAnId_1() {
+    Bean.clear();
+    Bean myBean = new Bean("pinto");
+    assertEquals(1, myBean.getId());
+  }
+
+  @Test
+  public void find_returnsBeanWithSameId_secondBean() {
+    Bean.clear();
+    Bean firstBean = new Bean("pinto");
+    Bean secondBean = new Bean("black");
+    assertEquals(secondBean, Bean.find(secondBean.getId()));
+  }
 }
