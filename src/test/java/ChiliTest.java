@@ -42,5 +42,19 @@ public class ChiliTest {
     Chili secondChili = new Chili("con carne");
     assertEquals(secondChili, Chili.find(secondChili.getId()));
   }
+  @Test
+  public void getBeans_initiallyReturnsEmptyList_ArrayList() {
+    Chili.clear();
+    Chili testChili = new Chili("3 bean");
+    assertEquals(0, testChili.getBeans().size());
+  }
+
+  @Test
+  public void addBean_addsBeantoList_true() {
+    Chili myChili = new Chili("3 bean");
+    Bean myBean = new Bean("pinto");
+    myChili.addBean(myBean);
+    assertTrue(myChili.getBeans().contains(myBean));
+  }
 
 }
